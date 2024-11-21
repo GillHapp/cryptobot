@@ -7,11 +7,11 @@ const userRouter = require("./Api/Routers/userRouter");
 const app = express();
 app.use(express.json({ limit: "100kb" }));
 
-app.use(cors());
 app.use(cors({
   origin: 'https://cryptobot-psi.vercel.app',
   methods: ["GET", "POST", "PUT", "DELETE"],
-  // allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+
   credentials: true,
 }));
 
