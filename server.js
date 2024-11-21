@@ -2,13 +2,14 @@ const mongoose = require("mongoose");
 const next = require("next");
 const dotenv = require("dotenv");
 
-dotenv.config({ path: "./config.env" });
-
-const dev = process.env.NODE_ENV !== "production";
+const dev = process.env.NODE_ENV != "production";
 const nextServer = next({ dev });
 const handle = nextServer.getRequestHandler();
 
-// DATABASE CONNECTION
+dotenv.config({ path: "./config.env" });
+const app = require("./app");
+
+//BUILDING DATABASE CONNECTION
 const DB = process.env.DATABASE.replace(
   "<PASSWORD>",
   process.env.DATABASE_PASSWORD
@@ -21,8 +22,14 @@ mongoose
   })
   .then(() => console.log("DB connection successful!"));
 
+const port = 8080;
+
 nextServer.prepare().then(() => {
-  module.exports = async (req, res) => {
-    handle(req, res);
-  };
+  app.get("*", (req, res) => {
+    return handle(req, res);
+  });
+
+  app.listen(port, () => {
+    console.log(`App Running on port ${port}...`);
+  });
 });
