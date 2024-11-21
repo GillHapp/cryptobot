@@ -9,7 +9,9 @@ app.use(express.json({ limit: "100kb" }));
 
 app.use(cors());
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://cryptobot-psi.vercel.app',
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  // allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 }));
 
