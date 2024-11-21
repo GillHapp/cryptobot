@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json({ limit: "100kb" }));
 
 app.use(cors({
-  origin: 'https://cryptobot-psi.vercel.app',
+  origin: ['https://cryptobot-psi.vercel.app'],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 
