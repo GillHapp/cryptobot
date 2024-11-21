@@ -28,7 +28,7 @@ const Signup = ({ axios, setActiveComponent, notifyError, notifySuccess }) => {
       //API CALL
       const response = await axios({
         method: "POST",
-        url: `/api/v1/user/signup`,
+        url: `https://cryptobot-psi.vercel.app/api/v1/user/signup`,
         withCredentials: true,
         data: {
           name: user.name,
